@@ -7,12 +7,12 @@
     android:layout_height="match_parent"
     tools:context=".HomePage">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvHome"
+
+    <FrameLayout
+        android:id="@+id/flContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="138dp"
-        tools:layout_editor_absoluteY="206dp" />
+        android:layout_above="@id/bottom_navigation"/>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
