@@ -49,7 +49,11 @@ public class HomeListAdapter extends  RecyclerView.Adapter<HomeListAdapter.ViewH
         holder.animeEndDate.setText(animes.get(position).getEndDate());
         holder.epiCount.setText(animes.get(position).getepiCountToString());
         holder.ageGuide.setText(animes.get(position).getAgeGuide());
-        holder.description.setText(animes.get(position).getDescription());
+        String d = animes.get(position).getDescription();
+        if(d.length() > 300){
+            d = d.substring(0, 300) + "...";
+        }
+        holder.description.setText(d);
 
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +62,7 @@ public class HomeListAdapter extends  RecyclerView.Adapter<HomeListAdapter.ViewH
                 Intent i = new Intent(context,AnimeContent.class);
                 i.putExtra("title", animes.get(position).getAnimeTitle());
                 i.putExtra("youtubeId", animes.get(position).getYoutubeVideoId());
+                i.putExtra("description", "Description: \n\n" + animes.get(position).getDescription());
                 context.startActivity(i);
             }
         });

@@ -13,5 +13,34 @@
         android:layout_height="wrap_content"
         android:id="@+id/ytp"/>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/contentTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:text="some Tittle" />
+
+            <TextView
+                android:id="@+id/contentDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                tools:text="some description" />
+
+        </LinearLayout>
+    </ScrollView>
+
 
 </LinearLayout>

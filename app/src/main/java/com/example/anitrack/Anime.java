@@ -49,9 +49,6 @@ public class Anime {
         if(description == "null"){
             description = "No description listed...";
         }
-        if(description.length() > 300){
-            description = description.substring(0,300) + "...";
-        }
         id = jsonObject.getString("id");
         youtubeVideoId = jsonObject.getJSONObject("attributes").getString("youtubeVideoId");
         if(youtubeVideoId == "null" || youtubeVideoId == null){
