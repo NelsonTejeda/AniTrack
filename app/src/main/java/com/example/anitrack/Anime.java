@@ -19,6 +19,8 @@ public class Anime {
     int epiCount;
     String ageGuide;
     String description;
+    String id;
+    String youtubeVideoId;
 
     public Anime(){};
 
@@ -49,6 +51,12 @@ public class Anime {
         }
         if(description.length() > 300){
             description = description.substring(0,300) + "...";
+        }
+        id = jsonObject.getString("id");
+        youtubeVideoId = jsonObject.getJSONObject("attributes").getString("youtubeVideoId");
+        if(youtubeVideoId == "null" || youtubeVideoId == null){
+            //TODO: make a youtube video that states the video they are looking for doesn't exsit.
+            youtubeVideoId = "-----";
         }
     }
 
@@ -95,5 +103,13 @@ public class Anime {
         v = String.valueOf(getEpiCount());
         v = "#Episodes: " + v;
         return v;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getYoutubeVideoId() {
+        return youtubeVideoId;
     }
 }

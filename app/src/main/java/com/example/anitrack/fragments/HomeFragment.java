@@ -60,7 +60,7 @@ public class HomeFragment extends Fragment {
 
     private void getDataFromApi(View v){
         AndroidNetworking.initialize(getContext().getApplicationContext());
-        AndroidNetworking.get("https://kitsu.io/api/edge/anime?filter%5Bseason%5D=" + season +"&filter%5BseasonYear%5D=" + year)
+        AndroidNetworking.get("https://kitsu.io/api/edge/anime?filter%5Bseason%5D=" + season +"&filter%5BseasonYear%5D=" + year + "&page%5Blimit%5D=20")
                 .addPathParameter("page", "0")
                 .addQueryParameter("limit", "20")
                 .addHeaders("token", "1234")
