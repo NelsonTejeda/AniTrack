@@ -60,7 +60,7 @@ public class HomeFragment extends Fragment {
 
     private void getDataFromApi(View v){
         AndroidNetworking.initialize(getContext().getApplicationContext());
-        AndroidNetworking.get("https://kitsu.io/api/edge/anime?filter%5Bseason%5D=" + season +"&filter%5BseasonYear%5D=" + year + "&page%5Blimit%5D=20")
+        AndroidNetworking.get("https://api.jikan.moe/v3/season/2021/spring")
                 .addPathParameter("page", "0")
                 .addQueryParameter("limit", "20")
                 .addHeaders("token", "1234")
@@ -72,7 +72,7 @@ public class HomeFragment extends Fragment {
                     public void onResponse(JSONObject response) {
                         try {
                             System.out.println(response.toString());
-                            JSONArray data = response.getJSONArray("data");
+                            JSONArray data = response.getJSONArray("anime");
                             System.out.println(data.toString());
                             animes.addAll(Anime.fromJsonArray(data));
                             homeListAdapter.notifyDataSetChanged();

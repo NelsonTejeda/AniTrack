@@ -25,35 +25,29 @@ public class Anime {
     public Anime(){};
 
     public Anime(JSONObject jsonObject) throws JSONException{
-        animeCover = jsonObject.getJSONObject("attributes").getJSONObject("posterImage").getString(sizeOfImage);
-        animeTitle = jsonObject.getJSONObject("attributes").getString("slug");
-        startDate = "Start Date: " + jsonObject.getJSONObject("attributes").getString("startDate");
-        if(jsonObject.getJSONObject("attributes").getString("endDate") == "null"){
-            endDate = "End Date: Unknown";
-        }
-        else{
-            endDate = "End Date: " + jsonObject.getJSONObject("attributes").getString("endDate");
-        }
-        try{
-            epiCount = jsonObject.getJSONObject("attributes").getInt("episodeCount");
-        }catch (Exception e){
-            epiCount = 0;
-        }
-        if(jsonObject.getJSONObject("attributes").getString("ageRatingGuide") == "null"){
-            ageGuide = "Age range not listed";
-        }
-        else{
-            ageGuide = jsonObject.getJSONObject("attributes").getString("ageRatingGuide");
-        }
-        description = jsonObject.getJSONObject("attributes").getString("description");
-        if(description == "null"){
-            description = "No description listed...";
-        }
-        id = jsonObject.getString("id");
-        youtubeVideoId = jsonObject.getJSONObject("attributes").getString("youtubeVideoId");
+        animeCover = jsonObject.getString("image_url");
+        animeTitle = jsonObject.getString("title");
+        startDate = "Start Date: " + jsonObject.getString("airing_start");
+        description = jsonObject.getString("synopsis");
+        youtubeVideoId = "null";
         if(youtubeVideoId == "null" || youtubeVideoId == null){
             //TODO: make a youtube video that states the video they are looking for doesn't exsit.
             youtubeVideoId = "-----";
+        }
+        if(jsonObject.getBoolean("r18") == false && jsonObject.getBoolean("kids") == false){
+            ageGuide = "Age Guide: Teens";
+        }
+        else if(jsonObject.getBoolean("r18") == true){
+            ageGuide = "Age Guide: 18+ / NSFW";
+        }
+        else {
+            ageGuide = "Age Guide: Kids";
+        }
+        try{
+            epiCount = jsonObject.getInt("episodes");
+        }
+        catch(Exception e){
+            epiCount = 0;
         }
     }
 
@@ -98,6 +92,9 @@ public class Anime {
     public String getepiCountToString(){
         String v;
         v = String.valueOf(getEpiCount());
+        if(v.equals("0")){
+            v = "TBA";
+        }
         v = "#Episodes: " + v;
         return v;
     }

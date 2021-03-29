@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         animeTitle = findViewById(R.id.animeTitle);
         AndroidNetworking.initialize(getApplicationContext());
-        AndroidNetworking.get("https://kitsu.io/api/edge/anime?filter%5Bseason%5D=" + season +"&filter%5BseasonYear%5D=" + year)
+        AndroidNetworking.get("https://api.jikan.moe/v3/season/2021/spring")
                 .addPathParameter("page", "0")
                 .addQueryParameter("limit", "3")
                 .addHeaders("token", "1234")
@@ -51,23 +51,13 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            JSONArray data = response.getJSONArray("data");
+                            JSONArray data = response.getJSONArray("anime");
                             JSONObject firstSet = data.getJSONObject(0);
-                            JSONObject attributeObj = firstSet.getJSONObject("attributes");
-                            Log.d("DEBUG", attributeObj.toString());
-                            ExecutorService threadpool = Executors.newCachedThreadPool();
-                            Future<String> name = threadpool.submit(() -> attributeObj.get("slug").toString());
-                            while(!name.isDone()){
-                                System.out.println("FutureTask is not finished yet...");
-                            }
-                            animeTitle.setText(name.get());
-                            //String name = attributeObj.get("slug").toString();
-                            //animeTitle.setText(name.get());
+                            String attributeObj = firstSet.getString("title");
+                            Log.d("DEBUG", attributeObj);
+                            animeTitle.setText(attributeObj);
+
                         } catch (JSONException e) {
-                            e.printStackTrace();
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        } catch (ExecutionException e) {
                             e.printStackTrace();
                         }
                     }

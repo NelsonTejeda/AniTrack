@@ -45,10 +45,18 @@ public class HomeListAdapter extends  RecyclerView.Adapter<HomeListAdapter.ViewH
         System.out.println(animes.get(position).getAnimeCover());
         Glide.with(context).load(animes.get(position).getAnimeCover()).into(holder.animeCover);
         holder.animeTitle.setText(animes.get(position).getAnimeTitle());
-        holder.animeStartDate.setText(animes.get(position).getStartDate());
-        holder.animeEndDate.setText(animes.get(position).getEndDate());
-        holder.epiCount.setText(animes.get(position).getepiCountToString());
+        if(animes.get(position).getStartDate().length() < 22){
+            holder.animeStartDate.setText("Start Date: Unknown");
+        }
+        else{
+            holder.animeStartDate.setText(animes.get(position).getStartDate().substring(0,22));
+        }
         holder.ageGuide.setText(animes.get(position).getAgeGuide());
+        holder.epiCount.setText(animes.get(position).getepiCountToString());
+
+//        holder.animeEndDate.setText(animes.get(position).getEndDate());
+//        holder.epiCount.setText(animes.get(position).getepiCountToString());
+//        holder.ageGuide.setText(animes.get(position).getAgeGuide());
         String d = animes.get(position).getDescription();
         if(d.length() > 300){
             d = d.substring(0, 300) + "...";
