@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1048429265179",
+    "project_id": "anime-tracker-233e6",
+    "storage_bucket": "anime-tracker-233e6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1048429265179:android:fde34a2c0cdbaf01eb13be",
+        "android_client_info": {
+          "package_name": "com.example.anitrack"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1048429265179-3ouugprgiioh52v3vdriohksffdrink9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJ9L_Ea_VjFo19RmDub7LG4kWhFQ1xmtE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1048429265179-3ouugprgiioh52v3vdriohksffdrink9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,22 +1,24 @@
 package com.example.anitrack;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.androidnetworking.AndroidNetworking;
-import com.androidnetworking.common.Priority;
-import com.androidnetworking.error.ANError;
-import com.androidnetworking.interfaces.JSONArrayRequestListener;
-import com.androidnetworking.interfaces.JSONObjectRequestListener;
-import com.codepath.asynchttpclient.AsyncHttpClient;
-import com.codepath.asynchttpclient.RequestHeaders;
-import com.codepath.asynchttpclient.RequestParams;
-import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
-import com.codepath.asynchttpclient.callback.TextHttpResponseHandler;
-import com.google.gson.JsonArray;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
+
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,46 +32,74 @@ import java.util.concurrent.Future;
 import okhttp3.Headers;
 
 public class MainActivity extends AppCompatActivity {
-    TextView animeTitle;
-    String season = "spring";
-    String year = "2021";
+    private static final String TAG = "MainActivity";
+    EditText emailEditText;
+    EditText passwordEditText;
+    Button signUpButton;
+    private FirebaseAuth mAuth;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        animeTitle = findViewById(R.id.animeTitle);
-        AndroidNetworking.initialize(getApplicationContext());
-        AndroidNetworking.get("https://api.jikan.moe/v3/season/2021/spring")
-                .addPathParameter("page", "0")
-                .addQueryParameter("limit", "3")
-                .addHeaders("token", "1234")
-                .setTag("test")
-                .setPriority(Priority.LOW)
-                .build()
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            JSONArray data = response.getJSONArray("anime");
-                            JSONObject firstSet = data.getJSONObject(0);
-                            String attributeObj = firstSet.getString("title");
-                            Log.d("DEBUG", attributeObj);
-                            animeTitle.setText(attributeObj);
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
+        mAuth = FirebaseAuth.getInstance();
 
-                    @Override
-                    public void onError(ANError error) {
-                        // handle error
-                        System.out.println(error.getErrorDetail());
-                        System.out.println(error.toString());
-                    }
-                });
+        emailEditText = findViewById(R.id.editTextTextEmailAddress);
+        passwordEditText = findViewById(R.id.editTextTextPassword);
+        signUpButton = findViewById(R.id.buttonSignUp);
 
+        signUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email = emailEditText.getText().toString();
+                String password = passwordEditText.getText().toString();
+                createUser(email,password);
+
+            }
+        });
 
     }
+
+    private void createUser(String email, String password){
+        if(!email.isEmpty() && !password.isEmpty()){
+            mAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                Log.d(TAG, "createUserWithEmail:success");
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                updateUI(user);
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                                Toast.makeText(MainActivity.this, "Authentication failed.",
+                                        Toast.LENGTH_SHORT).show();
+                                updateUI(null);
+                            }
+                        }
+                    });
+        }
+    }
+
+    private void updateUI(Object o) {
+        Intent i = new Intent(this,HomePage.class);
+        startActivity(i);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            Intent i = new Intent(this,HomePage.class);
+            startActivity(i);
+        }
+    }
+
+
 }
