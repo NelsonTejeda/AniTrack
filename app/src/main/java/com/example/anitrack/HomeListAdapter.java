@@ -54,7 +54,7 @@ public class HomeListAdapter extends  RecyclerView.Adapter<HomeListAdapter.ViewH
         holder.ageGuide.setText(animes.get(position).getAgeGuide());
         holder.epiCount.setText(animes.get(position).getepiCountToString());
 
-//        holder.animeEndDate.setText(animes.get(position).getEndDate());
+        holder.animeEndDate.setText(animes.get(position).getEndDate());
 //        holder.epiCount.setText(animes.get(position).getepiCountToString());
 //        holder.ageGuide.setText(animes.get(position).getAgeGuide());
         String d = animes.get(position).getDescription();

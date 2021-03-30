@@ -49,6 +49,7 @@ public class Anime {
         catch(Exception e){
             epiCount = 0;
         }
+        endDate = jsonObject.getString("type");
     }
 
     public static List<Anime> fromJsonArray(JSONArray animeJsonArray) throws JSONException{
@@ -74,7 +75,7 @@ public class Anime {
     }
 
     public String getEndDate() {
-        return endDate;
+        return "Type: " + endDate;
     }
 
     public int getEpiCount() {
