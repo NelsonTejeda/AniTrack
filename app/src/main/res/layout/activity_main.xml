@@ -4,14 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="5dp"
+    android:padding="10dp"
     tools:context=".MainActivity">
 
     <EditText
         android:id="@+id/editTextTextEmailAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="300dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
@@ -23,30 +25,26 @@
         android:id="@+id/editTextTextPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="251dp"
+        android:layout_below="@+id/editTextTextEmailAddress"
+        android:layout_marginTop="50dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword" />
 
     <Button
         android:id="@+id/buttonLogin"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="160dp"
-        android:layout_marginBottom="171dp"
+        android:layout_below="@+id/editTextTextPassword"
+        android:layout_marginTop="50dp"
         android:text="Login" />
 
     <Button
         android:id="@+id/newUserButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="110dp"
+        android:layout_below="@+id/buttonLogin"
+        android:layout_marginTop="50dp"
         android:text="New User?" />
 
 </RelativeLayout>
