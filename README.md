@@ -10,6 +10,10 @@ Anitrack is a work in progress app that is meant to keep track of the current se
 
 <img src='https://github.com/NelsonTejeda/AniTrack/blob/master/AniTrackv02.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
+#progress: added Login/logout
+
+<img src='https://github.com/NelsonTejeda/AniTrack/blob/master/AniTrackv03.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
 
 This app is for educational purposes and will not be publish to the playstore. 
 
