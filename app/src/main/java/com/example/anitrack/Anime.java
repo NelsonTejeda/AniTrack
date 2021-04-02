@@ -19,7 +19,7 @@ public class Anime {
     int epiCount;
     String ageGuide;
     String description;
-    String id;
+    int id;
     String youtubeVideoId;
 
     public Anime(){};
@@ -50,6 +50,7 @@ public class Anime {
             epiCount = 0;
         }
         endDate = jsonObject.getString("type");
+        id = jsonObject.getInt("mal_id");
     }
 
     public static List<Anime> fromJsonArray(JSONArray animeJsonArray) throws JSONException{
@@ -101,7 +102,8 @@ public class Anime {
     }
 
     public String getId() {
-        return id;
+
+        return String.valueOf(id);
     }
 
     public String getYoutubeVideoId() {

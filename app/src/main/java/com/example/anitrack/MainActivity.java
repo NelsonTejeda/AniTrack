@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                                 Log.w(TAG, "signInWithEmail:failure", task.getException());
                                 Toast.makeText(MainActivity.this, "Authentication failed.",
                                         Toast.LENGTH_SHORT).show();
-                                updateUI(null);
+                                //updateUI(null);
                             }
                         }
                     });
@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
+            System.out.println("THIS IS THE CURRENT USER: " + currentUser.getUid());
             Intent i = new Intent(this,HomePage.class);
             startActivity(i);
         }

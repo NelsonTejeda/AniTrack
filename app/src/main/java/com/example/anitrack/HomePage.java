@@ -10,6 +10,7 @@ import android.view.MenuItem;
 
 import com.example.anitrack.fragments.HomeFragment;
 import com.example.anitrack.fragments.ProfileFragment;
+import com.example.anitrack.fragments.SavedAnimeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomePage extends AppCompatActivity {
@@ -35,6 +36,9 @@ public class HomePage extends AppCompatActivity {
                     case R.id.action_profile:
                         // do something here
                         fragment = new ProfileFragment();
+                        break;
+                    case R.id.savedAnime_action:
+                        fragment = new SavedAnimeFragment();
                         break;
                     default:
                         fragment = new HomeFragment();
