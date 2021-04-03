@@ -14,6 +14,12 @@ Anitrack is a work in progress app that is meant to keep track of the current se
 
 <img src='https://github.com/NelsonTejeda/AniTrack/blob/master/AniTrackv03.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
+#progress: Save current anime
+
+<img src='https://github.com/NelsonTejeda/AniTrack/blob/master/AniTrackv04.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+
+
 
 This app is for educational purposes and will not be publish to the playstore. 
 
