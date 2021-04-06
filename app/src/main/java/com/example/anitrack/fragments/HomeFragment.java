@@ -1,9 +1,11 @@
 package com.example.anitrack.fragments;
 
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,6 +22,7 @@ import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.example.anitrack.Anime;
 import com.example.anitrack.HomeListAdapter;
 import com.example.anitrack.R;
+import com.example.anitrack.api.AnimeAPI;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -50,6 +53,7 @@ public class HomeFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -58,9 +62,11 @@ public class HomeFragment extends Fragment {
         getDataFromApi(view);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void getDataFromApi(View v){
+        AnimeAPI animeAPI = new AnimeAPI();
         AndroidNetworking.initialize(getContext().getApplicationContext());
-        AndroidNetworking.get("https://api.jikan.moe/v3/season/2021/spring")
+        AndroidNetworking.get(animeAPI.getAPIKEY())
                 .addPathParameter("page", "0")
                 .addQueryParameter("limit", "20")
                 .addHeaders("token", "1234")

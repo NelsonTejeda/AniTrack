@@ -42,7 +42,7 @@ public class AnimeContent extends AppCompatActivity {
         title.setText(t);
 
         titleId = t.replaceAll("\\s","-");
-        titleId = titleId + "-trailer-en";
+        titleId = titleId + "-trailer-en-sub";
 
         AndroidNetworking.get("https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=" + titleId + "&type=video&key=" + YoutubeAPI.YOUTUBE_API_KEY)
                 .addPathParameter("page", "0")

@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.anitrack.api.AnimeAPI;
 import com.example.anitrack.fragments.HomeFragment;
 import com.example.anitrack.fragments.ProfileFragment;
 import com.example.anitrack.fragments.SavedAnimeFragment;

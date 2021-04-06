@@ -1,6 +1,7 @@
 package com.example.anitrack;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,6 +56,14 @@ public class SavedAnimeAdapter extends RecyclerView.Adapter<SavedAnimeAdapter.Vi
         currentUser = mAuth.getCurrentUser();
         holder.animeName.setText(listOfAnime.get(position).get("name").toString());
         Glide.with(context).load(listOfAnime.get(position).get("imgURL")).override(400,600).into(holder.image);
+        holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context,AnimeContent.class);
+                i.putExtra("title", listOfAnime.get(position).get("name").toString());
+                context.startActivity(i);
+            }
+        });
 
     }
 
