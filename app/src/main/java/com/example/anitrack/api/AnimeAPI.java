@@ -24,6 +24,7 @@ public class AnimeAPI {
 
         //System.out.println(dtf.format(now));
         //Log.d(TAG, dtf.format(now));
+        //changed
 
         switch (Integer.parseInt(month)){
             case 1:
